@@ -1916,12 +1916,9 @@ class Constants(object):
                                 (%(timeseperator)s(?P<minutes>\d\d?(?=%(timeseperator)s)?))
                                 (%(timeseperator)s(?P<seconds>\d\d?(?=\W|$)))?
                             ''' % self.locale.re_values
-        self.RE_TIMEHMS2  = r'''(?P<hours>(\d\d?)(?:%(timeseperator)s)?)
-                                ((?P<tsep>%(timeseperator)s|)
-                                 (?P<minutes>(?:%(timeseperator)s)?(\d\d?)(?:%(timeseperator)s|\W|$)?)
-                                 (?:(?P=tsep)
-                                    (?P<seconds>(?:%(timeseperator)s)?\d\d?
-                                     (?:[.,]\d+)?))?)?''' % self.locale.re_values
+        self.RE_TIMEHMS2  = r'''((?:\W|^)(?P<hours>(\d\d?)(?=%(timeseperator)s)))
+                                (%(timeseperator)s(?P<minutes>\d\d?(?=%(timeseperator)s)?))
+                                (%(timeseperator)s(?P<seconds>\d\d?(?=\W|$)))?''' % self.locale.re_values
 
         if 'meridian' in self.locale.re_values:
             self.RE_TIMEHMS2 += r'\s?(?P<meridian>(?:\W|^)(%(meridian)s)(?:\W|$))' % self.locale.re_values
